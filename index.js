@@ -18,11 +18,31 @@ exports.typeDefs = gql`
     bodyHtml: String!
   }
 
+  type ManualGroup {
+    id: ID!
+    name: String!
+    imageId: ID!
+    bodyHtml: String!
+    memberships: [GroupMembership!]!
+  }
+
   type AutomaticGroup {
     id: ID!
     name: String!
     imageId: ID!
-    bodyHtml: String
+    bodyHtml: String!
+    memberships: [GroupMembership!]!
+    feature: [AutomaticGroupFeatures!]!
+    applyFeaturesSeparately: Boolean!
+  }
+
+  type AutomaticGroupFeatures {
+    column: String!
+  }
+
+  type GroupMembership {
+    groupId: ID!
+    carId: ID!
   }
 `
 
