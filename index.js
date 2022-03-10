@@ -45,6 +45,7 @@ exports.typeDefs = gql`
     column: String!
   }
 
+#  Never expose implementation details in your API design!
   type GroupMembership {
     # Group
     # Car
