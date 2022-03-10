@@ -19,6 +19,8 @@ exports.typeDefs = gql`
   }
 
   type ManualGroup {
+    # Image
+    # [GroupMembership]
     id: ID!
     name: String!
     imageId: ID!
@@ -27,6 +29,9 @@ exports.typeDefs = gql`
   }
 
   type AutomaticGroup {
+    # Image
+    # [GroupMembership]
+    # [AutomaticGroupFeatures]
     id: ID!
     name: String!
     imageId: ID!
@@ -41,6 +46,8 @@ exports.typeDefs = gql`
   }
 
   type GroupMembership {
+    # Group
+    # Car
     groupId: ID!
     carId: ID!
   }
