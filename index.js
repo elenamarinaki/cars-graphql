@@ -17,6 +17,13 @@ exports.typeDefs = gql`
     imageId: ID!
     bodyHtml: String!
   }
+
+  type AutomaticGroup {
+    id: ID!
+    name: String!
+    imageId: ID!
+    bodyHtml: String
+  }
 `
 
 const server = new ApolloServer({
