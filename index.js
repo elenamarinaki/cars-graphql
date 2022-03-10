@@ -20,7 +20,7 @@ exports.typeDefs = gql`
 
   type ManualGroup {
     # Image
-    # [GroupMembership]
+    # [GroupMembership] -> [Car]
     id: ID!
     name: String!
     imageId: ID!
@@ -30,7 +30,7 @@ exports.typeDefs = gql`
 
   type AutomaticGroup {
     # Image
-    # [GroupMembership]
+    # [GroupMembership] -> [Car]
     # [AutomaticGroupFeatures]
     id: ID!
     name: String!
@@ -45,13 +45,14 @@ exports.typeDefs = gql`
     column: String!
   }
 
-#  Never expose implementation details in your API design!
-  type GroupMembership {
-    # Group
-    # Car
-    groupId: ID!
-    carId: ID!
-  }
+  #  note: Never expose implementation details in your API design!
+  # delete: this becomes obsolete -> see transformation above
+  # type GroupMembership {
+  #   # Group
+  #   # Car
+  #   groupId: ID!
+  #   carId: ID!
+  # }
 `
 
 const server = new ApolloServer({
