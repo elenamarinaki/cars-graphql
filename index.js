@@ -46,10 +46,17 @@ exports.typeDefs = gql`
     # Image
     # [Car]
     # [GroupFeatures]
+    id: ID!
+    features: [GroupFeatures!]!
+    applyFeaturesSeparately: Boolean!
+    cars: [Car!]!
+    name: String!
+    imageId: ID!
+    bodyHtml: String!
   }
 
-  type AutomaticGroupFeatures {
-    column: String!
+  type GroupFeatures {
+    feature: String!
   }
 
   #  note: Never expose implementation details in your API design!
