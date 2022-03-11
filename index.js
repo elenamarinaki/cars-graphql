@@ -47,12 +47,17 @@ exports.typeDefs = gql`
     # [Car]
     # [GroupFeatures]
     id: ID!
-    features: [GroupFeatures!]!
-    applyFeaturesSeparately: Boolean!
+    featureSet: GroupFeatureSet
     cars: [Car!]!
     name: String!
     imageId: ID!
     bodyHtml: String!
+  }
+
+# group closely related items together into sub-objects
+  type GroupFeatureSet {
+    features: [GroupFeatures!]!
+    applyFeaturesSeparately: Boolean!
   }
 
   type GroupFeatures {
