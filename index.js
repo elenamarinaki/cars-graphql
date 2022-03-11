@@ -18,27 +18,34 @@ exports.typeDefs = gql`
     bodyHtml: String!
   }
 
-  type ManualGroup {
-    # Image
-    # [GroupMembership] -> [Car]
-    id: ID!
-    name: String!
-    imageId: ID!
-    bodyHtml: String!
-    memberships: [GroupMembership!]!
-  }
+# note: both groups are going to be replaced by one, "Group"
+  # type ManualGroup {
+  #   # Image
+  #   # [GroupMembership] -> [Car]
+  #   id: ID!
+  #   name: String!
+  #   imageId: ID!
+  #   bodyHtml: String!
+  #   memberships: [GroupMembership!]!
+  # }
 
-  type AutomaticGroup {
+  # type AutomaticGroup {
+  #   # Image
+  #   # [GroupMembership] -> [Car]
+  #   # [AutomaticGroupFeatures]
+  #   id: ID!
+  #   name: String!
+  #   imageId: ID!
+  #   bodyHtml: String!
+  #   memberships: [GroupMembership!]!
+  #   feature: [AutomaticGroupFeatures!]!
+  #   applyFeaturesSeparately: Boolean!
+  # }
+
+  type: Group {
     # Image
-    # [GroupMembership] -> [Car]
-    # [AutomaticGroupFeatures]
-    id: ID!
-    name: String!
-    imageId: ID!
-    bodyHtml: String!
-    memberships: [GroupMembership!]!
-    feature: [AutomaticGroupFeatures!]!
-    applyFeaturesSeparately: Boolean!
+    # [Car]
+    # [GroupFeatures]
   }
 
   type AutomaticGroupFeatures {
