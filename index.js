@@ -11,14 +11,14 @@ exports.typeDefs = gql`
     make: String!
   }
 
-  type Group {
-    id: ID!
-    name: String!
-    imageId: ID!
-    bodyHtml: String!
-  }
+  # note: both groups are going to be replaced by one, "Group"
+  # type Group {
+  #   id: ID!
+  #   name: String!
+  #   imageId: ID!
+  #   bodyHtml: String!
+  # }
 
-# note: both groups are going to be replaced by one, "Group"
   # type ManualGroup {
   #   # Image
   #   # [GroupMembership] -> [Car]
@@ -42,7 +42,7 @@ exports.typeDefs = gql`
   #   applyFeaturesSeparately: Boolean!
   # }
 
-  type: Group {
+  type Group {
     # Image
     # [Car]
     # [GroupFeatures]
@@ -54,7 +54,9 @@ exports.typeDefs = gql`
     # we should be using object references instead of ID fields
     # imageId: ID!
     image: Image!
-    bodyHtml: String!
+    # not a good name - name should make sense & not exposing implementation
+    # bodyHtml: String!  # ->description
+    description: String!
   }
 
   type Image {
@@ -62,14 +64,22 @@ exports.typeDefs = gql`
     url: String!
   }
 
-# group closely related items together into sub-objects
+  # group closely related items together into sub-objects
   type GroupFeatureSet {
     features: [GroupFeatures!]!
     applyFeaturesSeparately: Boolean!
   }
 
   type GroupFeatures {
-    feature: String!
+    feature: GroupFeatureFields!
+  }
+
+  enum GroupFeatureFields {
+    INCLINE_ENGINE
+    FOUR_CYLINDER_ENGINE
+    TWIN_CYLINDER_ENGINE
+    RED_PAINT
+    BLACK_PAINT
   }
 
   #  note: Never expose implementation details in your API design!
