@@ -48,10 +48,18 @@ exports.typeDefs = gql`
     # [GroupFeatures]
     id: ID!
     featureSet: GroupFeatureSet
-    cars: [Car!]!
+    cars(skip: Int!, take: Int!): [Car!]!
     name: String!
-    imageId: ID!
+    # this is not good practice!
+    # we should be using object references instead of ID fields
+    # imageId: ID!
+    image: Image!
     bodyHtml: String!
+  }
+
+  type Image {
+    id: ID!
+    url: String!
   }
 
 # group closely related items together into sub-objects
