@@ -5,6 +5,44 @@ exports.typeDefs = gql`
     cars: [Car!]!
   }
 
+  type Mutation {
+    groupCreate(
+      # the rules are relaxed here...
+      # as we're using the same group input to avoid duplication
+      groupInput: GroupInput!
+     )
+    groupUpdate(
+      groupId: ID!
+      groupInput: GroupInput!
+    ): GroupUpdatePayload
+    groupDelete(groupId: ID!)
+    groupPublish(groupId: ID!)
+    groupUnpublish(groupId: ID!)
+    groupAddCars(groupId: ID!, carId: ID!)
+    groupRemoveCars(groupId: ID!, carId: ID!)
+  }
+
+  type GroupUpdatePayload {
+    group: Group
+    userErrors: [UserErrors!]!
+  }
+
+  type UserErrors {
+    message: String!
+    field: [String!]!
+  }
+
+  input ImageInput {
+    url: String!
+  }
+
+  input GroupInput {
+    name: String
+    image: ImageInput
+    description: String
+    featureSet: GroupFeatureFields
+  }
+
   type Car {
     id: ID!
     color: String!
@@ -48,6 +86,8 @@ exports.typeDefs = gql`
     # [GroupFeatures]
     id: ID!
     featureSet: GroupFeatureSet
+    # our API should provide business logic, not just data
+    hasCar(id: ID!): Boolean!
     cars(skip: Int!, take: Int!): [Car!]!
     name: String!
     # this is not good practice!
